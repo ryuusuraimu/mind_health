@@ -26,9 +26,10 @@ class _BottomNavigationBarExampleState
     extends State<BottomNavigationBarExample> {
   int _selectedIndex = 0;
 
+
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
-      'Index 0: Home',
+      'HOME',
       style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
     ),
     Text(
@@ -36,9 +37,13 @@ class _BottomNavigationBarExampleState
       style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
     ),
     Text(
-      'マインドフルネスを学ぶ',
+      'マインドフルネス',
       style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
     ),
+    Text(
+      '設定',
+      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    )
   ];
 
   void _onItemTapped(int index) {
@@ -50,9 +55,7 @@ class _BottomNavigationBarExampleState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mind Health'),
-      ),
+      appBar: null, //headerを非表示にする
       body: IndexedStack(
         index: _selectedIndex,
         children: [
@@ -61,6 +64,8 @@ class _BottomNavigationBarExampleState
           _widgetOptions[2],
         ],
       ),
+// 省略...
+
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
@@ -69,51 +74,73 @@ class _BottomNavigationBarExampleState
               height: 56.0,
               width: 56.0,
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _selectedIndex == 0 ? Colors.amber[800] : Colors.transparent,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15.0),//角を丸くする
+                color: _selectedIndex == 0 ? Colors.purple[200] : Colors.transparent,
               ),
               child: Icon(
                 Icons.home_outlined,
                 color: Colors.black,
               ),
             ),
-            label: 'Home',
+            label: 'ホーム',
           ),
           BottomNavigationBarItem(
             icon: Container(
               height: 56.0,
               width: 56.0,
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _selectedIndex == 1 ? Colors.amber[800] : Colors.transparent,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15.0),//角を丸くする
+                color: _selectedIndex == 1 ? Colors.purple[200] : Colors.transparent,
               ),
               child: Icon(
-                Icons.music_note_outlined,
+                Icons.headphones_outlined,
                 color: Colors.black,
               ),
             ),
-            label: 'AIミュージック',
+            label: 'AIソング',
           ),
           BottomNavigationBarItem(
             icon: Container(
               height: 56.0,
               width: 56.0,
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _selectedIndex == 2 ? Colors.amber[800] : Colors.transparent,
+                shape: BoxShape.rectangle,
+                color: _selectedIndex == 2 ? Colors.purple[200] : Colors.transparent,
+                borderRadius: BorderRadius.circular(15.0) //角を丸くする
               ),
               child: Icon(
-                Icons.school_outlined,
+                Icons.spa,
                 color: Colors.black,
               ),
             ),
-            label: 'マインドフルネスを学ぶ',
+            label: '瞑想',
           ),
+          BottomNavigationBarItem(
+              icon: Container(
+                height: 56.0,
+                width: 56.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  color: _selectedIndex == 3 ? Colors.purple[200] : Colors.transparent,
+                  borderRadius: BorderRadius.circular(15.0) //角を丸くする
+                ),
+                child: Icon(
+                  Icons.settings,
+                  color: Colors.black,
+                ),
+              ),
+            label: '設定',
+          )
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.purple[200], // 選択された項目の色を薄紫に変更
         onTap: _onItemTapped,
       ),
+
+// 省略...
+
     );
   }
 }
@@ -176,7 +203,7 @@ class _ChatScreenState extends State<ChatScreen>
     super.build(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('HOME'),
+        title: Text('Chat Screen'),
       ),
       body: Column(
         children: [
@@ -192,6 +219,8 @@ class _ChatScreenState extends State<ChatScreen>
       ),
     );
   }
+
+
 
   Widget _buildMessageComposer() {
     return IconTheme(
