@@ -1,308 +1,258 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 
-void main() => runApp(BottomNavigationBarExampleApp());
+void main() {
+  runApp(const MyApp());
+}
 
-class BottomNavigationBarExampleApp extends StatelessWidget {
-  const BottomNavigationBarExampleApp({Key? key}) : super(key: key);
-
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: BottomNavigationBarExample(),
+    return const MaterialApp(
+      title: 'Mind Health',
+      color: Colors.black,
+      // theme: ThemeData(
+      //   primarySwatch: Colors.white,
+      // ),
+      home: HomePage(),
     );
   }
 }
 
-class BottomNavigationBarExample extends StatefulWidget {
-  const BottomNavigationBarExample({Key? key}) : super(key: key);
-
-  @override
-  State<BottomNavigationBarExample> createState() =>
-      _BottomNavigationBarExampleState();
-}
-
-class _BottomNavigationBarExampleState
-    extends State<BottomNavigationBarExample> {
-  int _selectedIndex = 0;
-
-
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'HOME',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    ),
-    Text(
-      'AIミュージック',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    ),
-    Text(
-      'マインドフルネス',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    ),
-    Text(
-      '設定',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    )
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null, //headerを非表示にする
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: [
-          ChatScreen(),
-          _widgetOptions[1],
-          _widgetOptions[2],
-        ],
-      ),
-// 省略...
-
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Container(
-              height: 56.0,
-              width: 56.0,
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(15.0),//角を丸くする
-                color: _selectedIndex == 0 ? Colors.purple[200] : Colors.transparent,
-              ),
-              child: Icon(
-                Icons.home_outlined,
-                color: Colors.black,
-              ),
-            ),
-            label: 'ホーム',
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              height: 56.0,
-              width: 56.0,
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(15.0),//角を丸くする
-                color: _selectedIndex == 1 ? Colors.purple[200] : Colors.transparent,
-              ),
-              child: Icon(
-                Icons.headphones_outlined,
-                color: Colors.black,
-              ),
-            ),
-            label: 'AIソング',
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              height: 56.0,
-              width: 56.0,
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                color: _selectedIndex == 2 ? Colors.purple[200] : Colors.transparent,
-                borderRadius: BorderRadius.circular(15.0) //角を丸くする
-              ),
-              child: Icon(
-                Icons.spa,
-                color: Colors.black,
-              ),
-            ),
-            label: '瞑想',
-          ),
-          BottomNavigationBarItem(
-              icon: Container(
-                height: 56.0,
-                width: 56.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  color: _selectedIndex == 3 ? Colors.purple[200] : Colors.transparent,
-                  borderRadius: BorderRadius.circular(15.0) //角を丸くする
-                ),
-                child: Icon(
-                  Icons.settings,
-                  color: Colors.black,
-                ),
-              ),
-            label: '設定',
-          )
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.purple[200], // 選択された項目の色を薄紫に変更
-        onTap: _onItemTapped,
-      ),
-
-// 省略...
-
-    );
-  }
-}
-
-class ChatScreen extends StatefulWidget {
-  @override
-  _ChatScreenState createState() => _ChatScreenState();
-}
-
-class _ChatScreenState extends State<ChatScreen>
-    with AutomaticKeepAliveClientMixin<ChatScreen> {
-  final TextEditingController _textController = TextEditingController();
-  final List<ChatMessage> _messages = [];
-
-  @override
-  bool get wantKeepAlive => true;
-
-  void _handleSubmitted(String text) {
-    _textController.clear();
-    setState(() {
-      _messages.add(
-        ChatMessage(
-          text: text,
-          isUserMessage: true,
-        ),
-      );
-      _messages.add(
-        ChatMessage(
-          text: generateRandomReply(),
-          isUserMessage: false,
-        ),
-      );
-    });
-  }
-
-  String generateRandomReply() {
-    final List<String> replies = [
-      'Hello!',
-      'How are you?',
-      'Nice to meet you!',
-      'What can I help you with?',
-      'I am an AI chatbot.',
-    ];
-    final random = Random();
-    return replies[random.nextInt(replies.length)];
-  }
-
-  Widget _buildMessageList() {
-    return ListView.builder(
-      padding: EdgeInsets.all(8.0),
-      itemCount: _messages.length,
-      itemBuilder: (context, index) {
-        return _messages[index];
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return Scaffold(
+      extendBodyBehindAppBar: true, //AppBarを背景に広げる
       appBar: AppBar(
-        title: Text('Chat Screen'),
+      backgroundColor: Colors.transparent, //AppBarを透明にする
+      elevation: 0, //影を非表示
+      title:const Text("Mind Health"),
       ),
-      body: Column(
-        children: [
-          Flexible(
-            child: _buildMessageList(),
-          ),
-          Divider(height: 1.0),
+      body: Stack(
+        fit: StackFit.expand, //子ウィジットを画面全体に広げる
+        children:[
           Container(
-            decoration: BoxDecoration(color: Theme.of(context).cardColor),
-            child: _buildMessageComposer(),
+         decoration: const BoxDecoration(
+          image: DecorationImage(
+          image: AssetImage('assets/wall_paper/morning.jpeg'),
+            fit: BoxFit.cover, //画面サイズに調整
+         ),
+        ),
           ),
-        ],
-      ),
-    );
-  }
 
 
-
-  Widget _buildMessageComposer() {
-    return IconTheme(
-      data: IconThemeData(color: Theme.of(context).colorScheme.secondary),
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 30.0),
-        child: Row(
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Flexible(
-              child: TextField(
-                controller: _textController,
-                onSubmitted: _handleSubmitted,
-                decoration: InputDecoration.collapsed(
-                  hintText: '会話する',
-                ),
-              ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ChatScreen(),
+                  ),
+                );
+              },
+              child: const Text('チャットへ移動'),
             ),
-            IconButton(
-              icon: Icon(Icons.send),
-              onPressed: () => _handleSubmitted(_textController.text),
+            const SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MeditationScreen(),
+                  ),
+                );
+              },
+              child: const Text('瞑想プログラムを受ける'),
+            ),
+            const SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const BgmSelectionScreen(),
+                  ),
+                );
+              },
+              child: const Text('BGMを選択する'),
             ),
           ],
         ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>const SettingsScreen(),
+            ),
+          );
+        },
+        child: const Icon(Icons.settings),
       ),
     );
   }
 }
 
-class ChatMessage extends StatelessWidget {
-  final String text;
-  final bool isUserMessage;
-
-  const ChatMessage({
-    required this.text,
-    required this.isUserMessage,
-  });
-
+class ChatScreen extends StatelessWidget {
+  const ChatScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final isUser = isUserMessage;
-    final alignment =
-    isUser ? MainAxisAlignment.end : MainAxisAlignment.start;
-    final bgColor = isUser ? Colors.lightBlueAccent : Colors.grey[300];
-    final textColor = isUser ? Colors.black : Colors.black;
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: const Center(
+        child: Text('Chat screen content'),
+      ),
+    );
+  }
+}
 
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0),
-      child: Row(
-        mainAxisAlignment: alignment,
+class MeditationScreen extends StatelessWidget {
+  const MeditationScreen({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: const Center(
+        child: Text('瞑想プログラムのコンテンツ'),
+      ),
+    );
+  }
+}
+
+class BgmSelectionScreen extends StatelessWidget {
+  const BgmSelectionScreen({Key? key}) : super(key:key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: const Center(
+        child: Text('BGM選択画面のコンテンツ'),
+      ),
+    );
+  }
+}
+
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({Key? key}) : super(key : key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: ListView(
         children: [
-          Container(
-            margin: EdgeInsets.only(right: 16.0),
-            child: CircleAvatar(
-              backgroundColor: bgColor,
-              child: Icon(isUser ? Icons.person : Icons.chat_bubble),
-            ),
+          ListTile(
+            title: const Text('アプリのテーマ変更'),
+            onTap: () {
+              // テーマ変更処理
+            },
           ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: isUser
-                  ? CrossAxisAlignment.end
-                  : CrossAxisAlignment.start,
-              children: [
-                Text(
-                  isUser ? 'You' : 'Chatbot',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: textColor,
-                  ),
+          ListTile(
+            title: const Text('アプリアイコンの変更'),
+            onTap: () {
+              // アイコン変更処理
+            },
+          ),
+          ListTile(
+            title: const Text('アカウント情報'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>const AccountInfoScreen(),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 5.0),
-                  child: Text(
-                    text,
-                    style: TextStyle(color: textColor),
-                  ),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('アプリの利用状況のログ'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AppUsageLogScreen(),
                 ),
-              ],
-            ),
+              );
+            },
           ),
         ],
       ),
     );
   }
 }
+
+class AccountInfoScreen extends StatelessWidget {
+  const AccountInfoScreen({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: const Center(
+        child:Text('アカウント情報のコンテンツ'),
+      ),
+    );
+  }
+}
+
+class AppUsageLogScreen extends StatelessWidget {
+  const AppUsageLogScreen({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: const Center(
+        child: Text('利用状況のログコンテンツ'),
+      ),
+    );
+  }
+}
+
+

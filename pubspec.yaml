@@ -38,6 +38,7 @@ dependencies:
   flutter_login: ^4.1.1
   speech_to_text: ^6.1.1
   shared_preferences: ^2.2.0
+  video_player: ^2.7.0
 
 flutter_icons:
   android: "launcher_icon"
@@ -70,6 +71,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/wall_paper/ming.jpeg
+    - assets/wall_paper/morning.jpeg
+    - assets/wall_paper/night.jpeg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
