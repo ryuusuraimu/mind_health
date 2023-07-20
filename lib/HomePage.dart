@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'meditation.dart';
+import 'chat_screen.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -11,7 +13,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent, //AppBarを透明にする
         elevation: 0, //影を非表示
-        title: const Text("🌿Mind Health🌿"),
+        title: const Text("Mind Health"),
       ),
       body: Stack(
         fit: StackFit.expand, //子ウィジットを画面全体に広げる
@@ -63,11 +65,11 @@ class HomePage extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap:(){
-                            //瞑想プログラムを受けるが押された際の処理
+                            //瞑想が押された際の処理
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const MeditationScreen(),
+                                builder: (context) =>  MeditationSelectionScreen(),
                               ),
                             );
                           },
@@ -150,74 +152,7 @@ class ChatScreen extends StatelessWidget {
   }
 }
 
-class MeditationScreen extends StatefulWidget {
-  const MeditationScreen({Key? key}) : super(key: key);
-
-  @override
-  _MeditationScreenState createState() => _MeditationScreenState();
-}
-
-class _MeditationScreenState extends State<MeditationScreen> {
-  int timerValue = 0;
-  late Timer timer;
-
-  @override
-  void initState() {
-    super.initState();
-    startTimer();
-  }
-
-  void startTimer() {
-    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        timerValue++;
-      });
-    });
-  }
-
-  void stopTimer() {
-    timer.cancel();
-  }
-
-  @override
-  void dispose() {
-    timer.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            stopTimer();
-            Navigator.pop(context);
-          },
-        ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('タイマー: $timerValue秒'),
-            const SizedBox(height: 16.0),
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 500),
-              width: 200.0,
-              height: 200.0,
-              decoration:const BoxDecoration(
-                color: Colors.blue,
-                shape: BoxShape.circle,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//BGM選択画面（
 
 class BgmSelectionScreen extends StatelessWidget {
   const BgmSelectionScreen({Key? key}) : super(key: key);
@@ -240,7 +175,9 @@ class BgmSelectionScreen extends StatelessWidget {
   }
 }
 
+// )BGM選択画面
 
+//設定画面（
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
@@ -297,7 +234,9 @@ class SettingsScreen extends StatelessWidget {
   }
 }
 
+//）設定画面
 
+//アカウント画面（
 class AccountInfoScreen extends StatelessWidget {
   const AccountInfoScreen({Key? key}) : super(key: key);
 
@@ -318,7 +257,9 @@ class AccountInfoScreen extends StatelessWidget {
     );
   }
 }
+//）アカウント画面
 
+//利用状況画面(
 class AppUsageLogScreen extends StatelessWidget {
   const AppUsageLogScreen({Key? key}) : super(key: key);
 
@@ -339,5 +280,7 @@ class AppUsageLogScreen extends StatelessWidget {
     );
   }
 }
+
+//)利用状況画面
 
 
