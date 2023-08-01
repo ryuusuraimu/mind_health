@@ -1,20 +1,85 @@
 import 'package:flutter/material.dart';
+import 'package:mind_health/app.dart';
+// import 'package:foundation_flutter/foundation.dart';
 import 'meditation.dart';
 import 'package:mind_health/bgm_screen.dart';
-import 'package:mind_health/settingscreen.dart';
+import 'settingscreen.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class BottomBar extends StatefulWidget {
+  const BottomBar({Key? key, required this.body, FloatingActionButton? floatingActionButton}) : super(key: key);
+  final Widget body;
+
+  @override
+  State<BottomBar> createState() => _BottomBarState();
+}
+
+class _BottomBarState extends State<BottomBar> {
+  int _currentIndex = 0;
+
+  final List<Widget> _widgetOptions = <Widget>[
+    const HomeScreen(),
+    const NightScreen(),
+    const DiaryScreen(),
+    const BgmSelectionScreen(),
+    const SettingsScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text("Mind Health"),
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      home: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+        ),
+      bottomNavigationBar: SalomonBottomBar(
+        currentIndex: _currentIndex,
+        onTap: (i) => setState(() => _currentIndex = i),
+        items:[
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.home_rounded),
+            title: const Text("Home"),
+            selectedColor: Colors.green,
+          ),
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.bedtime),
+            title: const Text("Sleep"),
+            selectedColor: Colors.green,
+          ),
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.menu_book),
+            title: const Text("Learn"),
+            selectedColor: Colors.green,
+          ),
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.music_note),
+            title: const Text("Music"),
+            selectedColor: Colors.green,
+          ),
+          SalomonBottomBarItem(
+            icon: const Icon(Icons.settings),
+            title: const Text("Settings"),
+            selectedColor: Colors.green,
+          ),
+        ],
+      ),
+      ),
+    );
+  }
+}
+
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomBar(
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -25,112 +90,54 @@ class HomePage extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            child: Positioned.fill(
-              child: FractionallySizedBox(
-                alignment: Alignment.bottomCenter,
-                heightFactor: 0.5,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.3),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(45),
-                      topRight: Radius.circular(45),
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      _buildMenuButton(
-                        context,
-                        text: 'チャット',
-                        onTap: () {
-                          // チャットボタンが押されたらの処理
-                        },
-                      ),
-                      _buildMenuButton(
-                        context,
-                        text: '瞑想',
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MeditationSelectionScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                      _buildMenuButton(
-                        context,
-                        text: 'BGM',
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BgmSelectionScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.3),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(45),
+                  topRight: Radius.circular(45),
                 ),
+              ),
+              child: Column(
+                children: [
+                  _buildMenuButton(
+                    context,
+                    text: 'チャット',
+                    onTap: () {
+                      // チャットボタンが押されたらの処理
+                    },
+                  ),
+                  const SizedBox(height: 16), // ボタン間に余白を追加
+                  _buildMenuButton(
+                    context,
+                    text: '瞑想',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MeditationSelectionScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 16), // ボタン間に余白を追加
+                  _buildMenuButton(
+                    context,
+                    text: 'BGM',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BgmSelectionScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const SettingsScreen(),
-            ),
-          );
-        },
-        child: const Icon(Icons.settings),
-      ),
-
-      bottomNavigationBar: SizedBox(
-        height: 69,
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: _NavigationBarIcon(Icons.home),
-              label: '家',
-            ),
-            BottomNavigationBarItem(
-              icon: _NavigationBarIcon(Icons.nightlight),
-              label: '夜',
-            ),
-            BottomNavigationBarItem(
-              icon: _NavigationBarIcon(Icons.auto_stories),
-              label: '日記',
-            ),
-          ],
-          onTap: (index) {
-            if (index == 0) {
-              // '家'アイコンがタップされたときの処理
-            } else if (index == 1) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NightScreen(),
-                ),
-              );
-            } else if (index == 2) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const DiaryScreen(),
-                ),
-              );
-            }
-          },
-          selectedItemColor: Colors.purple[200],
-          unselectedItemColor: Colors.white,
-          backgroundColor: Colors.grey,
-        ),
       ),
     );
   }
@@ -154,29 +161,6 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class _NavigationBarIcon extends StatelessWidget {
-  final IconData iconData;
-
-  _NavigationBarIcon(this.iconData);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 22.0,
-      width: 56.0,
-      decoration: BoxDecoration(
-        shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.circular(15.0),
-        color: Colors.transparent,
-      ),
-      child: Icon(
-        iconData,
-        color: Colors.white,
-      ),
-    );
-  }
-}
-
 // 夜モード画面
 class NightScreen extends StatefulWidget {
   const NightScreen({Key? key}) : super(key: key);
@@ -185,21 +169,23 @@ class NightScreen extends StatefulWidget {
   _NightScreenState createState() => _NightScreenState();
 }
 
-class _NightScreenState extends State<NightScreen>{
-  Widget build(BuildContext context){
+class _NightScreenState extends State<NightScreen> {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sleep Screen'),
       ),
       body: const Center(
-          child: Text('おやすみなさい😴',style: TextStyle(fontSize: 50.0),)
+        child: Text(
+          'おやすみなさい😴',
+          style: TextStyle(fontSize: 50.0),
+        ),
       ),
     );
   }
 }
 
-
-//日記画面
+// 日記画面
 class DiaryScreen extends StatefulWidget {
   const DiaryScreen({Key? key}) : super(key: key);
 
@@ -207,14 +193,17 @@ class DiaryScreen extends StatefulWidget {
   _DiaryScreenState createState() => _DiaryScreenState();
 }
 
-class _DiaryScreenState extends State<DiaryScreen>{
-  Widget build(BuildContext context){
+class _DiaryScreenState extends State<DiaryScreen> {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Diary Screen'),
       ),
       body: const Center(
-          child: Text('開発中',style: TextStyle(fontSize: 50.0),)
+        child: Text(
+          '開発中',
+          style: TextStyle(fontSize: 50.0),
+        ),
       ),
     );
   }

@@ -46,7 +46,7 @@ class _ChatScreenState extends State<ChatScreen>
 
   Widget _buildMessageList() {
     return ListView.builder(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       itemCount: _messages.length,
       itemBuilder: (context, index) {
         return _messages[index];
@@ -62,14 +62,14 @@ class _ChatScreenState extends State<ChatScreen>
       body: Column(
         children: [
           AppBar(
-            title: Text('チャット'),
+            title: const Text('チャット'),
             backgroundColor: Colors.green,
             elevation: 0,
           ),
           Expanded(
             child: _buildMessageList(),
           ),
-          Divider(height: 1.0),
+          const Divider(height: 1.0),
           Container(
             decoration: BoxDecoration(color: Theme.of(context).cardColor),
             child: _buildMessageComposer(),
@@ -83,20 +83,20 @@ class _ChatScreenState extends State<ChatScreen>
     return IconTheme(
       data: IconThemeData(color: Theme.of(context).colorScheme.secondary),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 30.0),
+        margin: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 30.0),
         child: Row(
           children: [
             Flexible(
               child: TextField(
                 controller: _textController,
                 onSubmitted: _handleSubmitted,
-                decoration: InputDecoration.collapsed(
+                decoration: const InputDecoration.collapsed(
                   hintText: '会話する',
                 ),
               ),
             ),
             IconButton(
-              icon: Icon(Icons.send),
+              icon: const Icon(Icons.send),
               onPressed: () => _handleSubmitted(_textController.text),
             ),
           ],
@@ -124,12 +124,12 @@ class ChatMessage extends StatelessWidget {
     final textColor = isUser ? Colors.black : Colors.black;
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0),
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
       child: Row(
         mainAxisAlignment: alignment,
         children: [
           Container(
-            margin: EdgeInsets.only(right: 16.0),
+            margin: const EdgeInsets.only(right: 16.0),
             child: CircleAvatar(
               backgroundColor: bgColor,
               child: Icon(isUser ? Icons.person : Icons.chat_bubble),
@@ -149,7 +149,7 @@ class ChatMessage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 5.0),
+                  margin: const EdgeInsets.only(top: 5.0),
                   child: Text(
                     text,
                     style: TextStyle(color: textColor),
