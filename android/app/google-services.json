@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "825227883188",
+    "project_id": "mind-health-e2360",
+    "storage_bucket": "mind-health-e2360.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825227883188:android:98cc2a9baeb7b9bb9a1de1",
+        "android_client_info": {
+          "package_name": "com.example.mind_health"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825227883188-mqvjanrg6vqt86lqcofakt2uc6spjrvj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBB8v0ywapFkwtRng6zplD9lMcIfQnawc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825227883188-mqvjanrg6vqt86lqcofakt2uc6spjrvj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

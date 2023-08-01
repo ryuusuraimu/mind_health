@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>825227883188-rc395hes2bo4mff1m1be4fsb4gjc6s6h.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.825227883188-rc395hes2bo4mff1m1be4fsb4gjc6s6h</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCCWRu0vA5NFOPubjKRZQJQPPS6r95FrpE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>825227883188</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.mindHealth.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>mind-health-e2360</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mind-health-e2360.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:825227883188:ios:713d01b875c364ae9a1de1</string>
+</dict>
+</plist>
