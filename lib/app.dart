@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       title: 'Mind Health',
       theme: ThemeData(
       ),
-      home: const HomeScreen(),
+      home:  HomeScreen(),
     );
   }
 }
