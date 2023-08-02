@@ -7,38 +7,199 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true, //AppBarを背景に広げる
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.transparent, //AppBarを透明にする
-        elevation: 0, //影を非表示
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         title: const Text("Mind Health"),
       ),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/wall_paper/flower.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Positioned.fill(
+              child: FractionallySizedBox(
+                alignment: Alignment.bottomCenter,
+                heightFactor: 0.5,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.3),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(45),
+                      topRight: Radius.circular(45),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            // Home screen navigation
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreen(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Home',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            // 瞑想プログラムを受けるが押された際の処理
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    MeditationSelectionScreen(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: const Text(
+                              '瞑想',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            // BGMを選択するが押された際の処理
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const BgmSelectionScreen(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'BGM',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       drawer: Container(
-        width: MediaQuery.of(context).size.width * 0.4, //<-- SEE HERE
+        width: MediaQuery.of(context).size.width * 0.8,
         child: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
+              ListTile(
+                leading: Icon(
+                  Icons.home,
+                  size: 30,
                 ),
-                child: Text('Home'),
-              ),const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
+                title: Text("Home"),
+                onTap: () {
+                  // Handle Home screen navigation here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.spa_outlined, // Replace 'Meditation' text with meditation icon
+                  size: 30,
                 ),
-                child: Text('Meditation'),
-              ),const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
+                title: Text('Meditation'),
+                onTap: () {
+                  // Handle Meditation screen navigation here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MeditationSelectionScreen(),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.chat_outlined, // Replace 'Chat' text with chat icon
+                  size: 30,
                 ),
-                child: Text('Chat'),
-              ),const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
+                title: Text('Chat'),
+                onTap: () {
+                  // Handle Chat screen navigation here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ChatScreen(),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.headphones_outlined, // Replace 'Music' text with music icon
+                  size: 30,
                 ),
-                child: Text('Music'),
+                title: Text('Music'),
+                onTap: () {
+                  // Handle Music screen navigation here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BgmSelectionScreen(),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.settings_outlined, // Replace 'Settings' text with settings icon
+                  size: 30,
+                ),
+                title: Text('Settings'),
+                onTap: () {
+                  // Handle Settings screen navigation here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SettingsScreen(),
+                    ),
+                  );
+                },
               ),
               ListTile(
                 title: const Text('Item 1'),
@@ -57,107 +218,6 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      body: Stack(
-        fit: StackFit.expand, //子ウィジットを画面全体に広げる
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/wall_paper/flower.png'),
-                fit: BoxFit.cover, //画面サイズに調整
-              ),
-            ),
-            child: Positioned.fill(
-              child: FractionallySizedBox(
-                alignment: Alignment.bottomCenter,
-                heightFactor: 0.5, //スライドの高さを調整するための係数
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.3),
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(45),
-                        topRight: Radius.circular(45)
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: (){
-                            //チャットへ移動が押された際の処理
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ChatScreen(),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: const Text(
-                              'チャット',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap:(){
-                            //瞑想プログラムを受けるが押された際の処理
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MeditationSelectionScreen(),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: const Text(
-                              '瞑想',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: (){
-                            //BGMを選択するが押された際の処理
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const BgmSelectionScreen(),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            child: const Text(
-                              'BGM',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize:20.0,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
