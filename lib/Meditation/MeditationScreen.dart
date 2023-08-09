@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:mind_health/DiaryScreen.dart';
 import 'package:mind_health/NavigationBar.dart';
 
@@ -33,10 +34,10 @@ class MeditationSelectionScreen extends StatelessWidget {
               child:Card(
                   color: Colors.cyan,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween, // 右寄せ
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween, // アイコン、右寄せ
                     children: <Widget>[
                       ConstrainedBox(
-                          constraints: BoxConstraints(minWidth: 180),
+                          constraints: BoxConstraints(minWidth: 100),
                           child: Text("マインドフルネスとは", style: TextStyle(fontSize: 20))),
                       Container(
                         width: 80,
@@ -116,7 +117,7 @@ class MeditationSelectionScreen extends StatelessWidget {
                   ],
                 )),
           ],
-        ));
+        )
+    );
   }
 }
-

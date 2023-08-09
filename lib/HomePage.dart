@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Meditation/MeditationScreen.dart';
 import 'bgm_screen.dart';
 
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
   @override
@@ -118,12 +119,24 @@ class HomeScreen extends StatelessWidget {
       drawer: Container(
         width: MediaQuery.of(context).size.width * 0.8,
         child: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
+          child: FractionallySizedBox(
+            alignment: Alignment.topCenter,
+            heightFactor: 0.8, // Set the heightFactor to 0.8 for 80% height
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                SizedBox(
+                  height: 80,
+                  child: DrawerHeader(
+                    decoration: BoxDecoration(),
+                    child:Container(
+                      color: Colors.white,
+                    )
+                  ),
+                ),
               ListTile(
                 leading: Icon(
-                  Icons.home,
+                  Icons.home_outlined,
                   size: 30,
                 ),
                 title: Text("Home"),
@@ -201,34 +214,24 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
               ),
-              ListTile(
-                title: const Text('Item 1'),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
-              ListTile(
-                title: const Text('Item 2'),
-                onTap: () {
-                  // Update the state of the app.
-                  // ...
-                },
-              ),
+              // ListTile(
+              //   title: const Text('Item 1'),
+              //   onTap: () {
+              //     // Update the state of the app.
+              //     // ...
+              //   },
+              // ),
+              // ListTile(
+              //   title: const Text('Item 2'),
+              //   onTap: () {
+              //     // Update the state of the app.
+              //     // ...
+              //   },
+              // ),
             ],
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const SettingsScreen(),
-            ),
-          );
-        },
-        child: const Icon(Icons.settings),
       ),
     );
   }
