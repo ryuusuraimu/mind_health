@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.5 <4.0.0'
+  sdk: '>=3.1.0-262.2.beta <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -33,22 +33,7 @@ dependencies:
   flutter_launcher_icons: ^0.9.2
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  animations: ^2.0.7
-  gallery: ^0.0.4
-  flutter_login: ^4.1.1
-  speech_to_text: ^6.1.1
-  shared_preferences: ^2.2.0
-  video_player: ^2.7.0
-  firebase_core: ^2.15.0
-  flutter_native_splash: ^2.0.5
-  salomon_bottom_bar: ^3.3.2
-  foundation_flutter: ^0.2.0
-  curved_navigation_bar: ^1.0.3
-  persistent_bottom_nav_bar: ^4.0.2
-  animated_text_kit: ^4.2.2
-  assets_audio_player: ^3.0.6
-  flutter_neumorphic: ^3.2.0
-  health: ^7.0.1
+
 
 
 flutter_icons:

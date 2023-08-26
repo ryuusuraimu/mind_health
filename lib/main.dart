@@ -1,7 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:mind_health/firebase_options.dart';
 import 'HomePage.dart';
 import 'package:flutter/services.dart';
 import 'dart:io';
@@ -15,9 +13,6 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp, // 縦固定
   ]);
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
   runApp(const MyApp());
 }
 
@@ -30,9 +25,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Mind Health',
       theme: ThemeData(
-        //brightness: Brightness.dark, // テーマを黒色に設定
-        // 他のテーマ設定もここでカスタマイズできます
-      ),
+          //brightness: Brightness.dark, // テーマを黒色に設定
+          // 他のテーマ設定もここでカスタマイズできます
+          ),
       home: const HomeScreen(),
     );
   }
