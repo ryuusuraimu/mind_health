@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
@@ -20,24 +18,12 @@ class SettingsScreen extends StatelessWidget {
           ListTile(
             title: const Text('アプリのテーマ変更'),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  //TODO: テーマ変更処理
-                  builder: (context) => const AccountInfoScreen(),
-                ),
-              );
             },
           ),
           ListTile(
             title: const Text('アプリアイコンの変更'),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const AccountInfoScreen(),
-                ),
-              );
+              // アイコン変更処理
             },
           ),
           ListTile(
