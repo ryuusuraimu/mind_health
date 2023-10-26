@@ -1,6 +1,6 @@
 # mind_health
 
-A new Flutter project.
+A new health care flutter application.
 
 ## Getting Started
 
